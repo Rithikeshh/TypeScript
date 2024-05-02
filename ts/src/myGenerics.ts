@@ -47,8 +47,54 @@ function anotherFunction<T, U extends Database>(valOne:T, valTow:U):object{
         valTow
     }
 }
+/* Same as above but different approach */
+// function anotherFunction<T, Database>(valOne: T, valTow: Database): object {
+//   return {
+    // valOne,
+    // valTow,
+//   };
+// }
 anotherFunction(3, {
     connection:"localhost",
     username: "root",
     password: ""
 })
+
+/* Generic class */
+interface Quiz {
+  name: string;
+  type: string;
+}
+interface Course {
+  name: string;
+  author: string;
+  subject: String;
+}
+
+class Sellable<T> {
+  public cart: T[] = [];
+
+  addToCart(product: T): void {
+    this.cart.push(product);
+  }
+}
+
+const quiz = new Sellable<Quiz>();
+const course = new Sellable<Course>();
+console.log(quiz);
+console.log(course);
+
+
+quiz.addToCart({
+  name: "Math",
+  type: "Science",
+});
+
+course.addToCart({
+  name: "Math",
+  subject: "Science",
+  author: "Alok",
+});
+console.log(quiz.cart);
+console.log(course.cart);
+
